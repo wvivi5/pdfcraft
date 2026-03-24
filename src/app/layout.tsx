@@ -1,4 +1,5 @@
 import type { Metadata } from 'next';
+import Script from 'next/script';
 import '@/app/globals.css';
 
 export const metadata: Metadata = {
@@ -25,6 +26,14 @@ export default function RootLayout({
         <style dangerouslySetInnerHTML={{ __html: 'html{scrollbar-gutter:stable}' }} />
       </head>
       <body className="min-h-screen bg-background text-foreground antialiased">
+        {/* Google AdSense */}
+        <Script
+          id="adsbygoogle-init"
+          async
+          strategy="afterInteractive"
+          src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9775809058159164"
+          crossOrigin="anonymous"
+        />
         {children}
       </body>
     </html>
