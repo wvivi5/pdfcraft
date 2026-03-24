@@ -9,6 +9,13 @@ const nextConfig = {
 
   // Webpack configuration for WASM modules
   webpack: (config, { isServer, webpack }) => {
+    // pdfjs-dist legacy build contains an optional Node-only dependency on `canvas`.
+    // In static/export + edge deployments we don't want to bundle/resolve it.
+    config.resolve.fallback = {
+      ...config.resolve.fallback,
+      canvas: false,
+    };
+
     // Handle qpdf-wasm and other modules that use Node.js built-ins
     if (!isServer) {
       config.resolve.fallback = {
